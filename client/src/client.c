@@ -18,14 +18,17 @@ int main(void)
 
 	// Usando el logger creado previamente
 	// Escribi: "Hola! Soy un log"
-
-
+	logger = log_create("tp0.log", "tp0_log", true, LOG_LEVEL_INFO);
+	
+	log_info(logger, "Hola soy un Log");
+	log_destroy(logger);
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 
 	config = iniciar_config();
 
 	// Usando el config creado previamente, leemos los valores del config y los 
 	// dejamos en las variables 'ip', 'puerto' y 'valor'
+	config = config_create("cliente.config");
 
 	// Loggeamos el valor de config
 
