@@ -21,7 +21,7 @@ int main(void)
 	logger = log_create("tp0.log", "tp0_log", true, LOG_LEVEL_INFO);
 	
 	log_info(logger, "Hola soy un Log");
-	log_destroy(logger);
+	// log_destroy(logger);
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 
 	config = iniciar_config();
@@ -31,12 +31,25 @@ int main(void)
 	config = config_create("cliente.config");
 
 	// Loggeamos el valor de config
+	valor = config_get_string_value(config, "CALVE");
+	ip = config_get_string_value(config, "IP");
+	puerto = config_get_string_value(config, "PUERTO");
 
-
+	log_info(logger, valor);
+	log_info(logger, ip);
+	log_info(logger, puerto);
 	/* ---------------- LEER DE CONSOLA ---------------- */
 
-	leer_consola(logger);
+	char* linea = readline("> Escribi lo que desees: ");
 
+	while (strcmp(linea, "") != 0)
+	{
+		log_info(logger, linea);
+		free(linea);
+		readline("> Escribi lo que desees: ");
+	}
+
+	log_destroy(logger);
 	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
 
 	// ADVERTENCIA: Antes de continuar, tenemos que asegurarnos que el servidor esté corriendo para poder conectarnos a él
