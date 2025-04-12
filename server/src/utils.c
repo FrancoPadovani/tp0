@@ -24,6 +24,7 @@ int iniciar_servidor(void)
 	socket_servidor = socket(servinfo->ai_family,
 						servinfo->ai_socktype,
 						servinfo->ai_protocol);
+						
 	err = setsockopt(socket_servidor, SOL_SOCKET, SO_REUSEPORT, &(int){1}, sizeof(int));
 	// Asociamos el socket a un puerto
 	err = bind(socket_servidor, servinfo->ai_addr, servinfo->ai_addrlen);
@@ -44,7 +45,6 @@ int esperar_cliente(int socket_servidor)
 
 	// Aceptamos un nuevo cliente
 	int socket_cliente = accept(socket_servidor, NULL, NULL);
-
 	log_info(logger, "Se conecto un cliente!");
 
 	return socket_cliente;

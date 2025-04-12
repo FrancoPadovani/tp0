@@ -67,10 +67,9 @@ int main(void)
 	valor = config_get_string_value(config,"CLAVE");
 	ip = config_get_string_value(config,"IP");
 	puerto = config_get_string_value(config,"PUERTO");
-	log_info(logger, valor);
 
 	// Creamos una conexión hacia el servidor
-	
+
 	conexion = crear_conexion(ip, puerto);
 	log_info(logger, "conexion creada");
 
